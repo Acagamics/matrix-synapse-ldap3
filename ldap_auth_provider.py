@@ -106,8 +106,11 @@ class LdapAuthProvider(object):
                     result,
                     conn
                 )
-                if not result:
-                    defer.returnValue(False)
+
+                if result:
+                    yield self.account_handler.register(localpart=localpart)
+
+                defer.returnValue(result)
             elif self.ldap_mode == LDAPMode.SEARCH:
                 result, conn = yield self._ldap_authenticated_search(
                     server=server, localpart=localpart, password=password
