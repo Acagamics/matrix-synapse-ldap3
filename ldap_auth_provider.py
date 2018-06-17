@@ -61,7 +61,7 @@ class LdapAuthProvider(object):
                 'This is required for LDAP Authentication.'
             )
 
-        self.ldap_mode = config.mode
+        self.ldap_mode = LDAPMode.SIMPLE 
         self.ldap_uri = config.uri
         self.ldap_start_tls = config.start_tls
         self.ldap_base = config.base
