@@ -107,7 +107,7 @@ class LdapAuthProvider(object):
                     conn
                 )
 
-                if result:
+                if result and not (yield self.account_handler.check_user_exists(user_id)):
                     yield self.account_handler.register(localpart=localpart)
 
                 defer.returnValue(result)
